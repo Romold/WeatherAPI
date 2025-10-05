@@ -1,8 +1,8 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
 import requests
 import time
 import os
-from urllib.parse import quote_plus
+# from urllib.parse import quote_plus
 
 # import openmeteo_requests
 
