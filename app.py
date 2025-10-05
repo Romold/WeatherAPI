@@ -85,7 +85,7 @@ def fetch_current_weather(lat, lon):
     cache_set(key, out)
     return out 
 
-@app.route("/", methods=["GET"])
+@app.route("/weather", methods=["GET"])
 def weather_by_city(city):
 
     return jsonify({
