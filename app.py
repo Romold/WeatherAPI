@@ -2,12 +2,6 @@ from flask import Flask, jsonify
 import requests
 import time
 import os
-# from urllib.parse import quote_plus
-
-# import openmeteo_requests
-
-# openmeteo = openmeteo_requests.Client()
-
 
 app = Flask(__name__)
 
@@ -91,29 +85,16 @@ def fetch_current_weather(lat, lon):
     cache_set(key, out)
     return out 
 
+@app.route("/", methods=["GET"])
+def weather_by_city(city):
 
-# @app.route("/weather/<city>", methods = ["GET"])
-# def weather_by_city(city):
-
-#     # city = requests.argsget("city")
-#     # if not city:
-#     #     return jsonify({"error" : "Please Provide City"})
-    
-#     geo = geocode_city(city) 
-#     if not geo:
-#         return jsonify({"error" : "PLease provide the "})
-    
-#     weather = fetch_current_weather(geo["latitude"], geo["longitude"])
-#     if not weather:
-#         return jsonify({"error" : "PLease provide the following"})
-    
-#     return jsonify({
-#         "location" : {"name" : geo["name"], "country": geo["country"], "latitude" : geo["latitude"], "longitude" : geo["longitude"]},
-#         "current" : weather
-#     })
+    return jsonify({
+        "Site" : "Welcome to this API"
+    })
 
 @app.route("/weather/<city>", methods=["GET"])
 def weather_by_city(city):
+
     geo = geocode_city(city)
     if not geo:
         return jsonify({"error": "Could not find location"}), 404
@@ -131,25 +112,6 @@ def weather_by_city(city):
         },
         "current": weather
     })
-
-# @app.route("/weather", methods=["GET"])
-# def weather_by_city():
-#     city = request.args.get("city")
-#     if not city:
-#         return jsonify({"error": "Please provide ?city=CityName or use /weather/coords"}), 400
-
-#     geo = geocode_city(city)
-#     if not geo:
-#         return jsonify({"error": f"Could not find coordinates for '{city}'"}), 404
-
-#     weather = fetch_current_weather(geo["latitude"], geo["longitude"])
-#     if not weather:
-#         return jsonify({"error": "Weather data not available"}), 503
-
-#     return jsonify({
-#         "location": {"name": geo["name"], "country": geo["country"], "latitude": geo["latitude"], "longitude": geo["longitude"]},
-#         "current": weather
-#     })
 
 if __name__ == "__main__":
 
