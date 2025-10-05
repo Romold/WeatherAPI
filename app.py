@@ -86,7 +86,7 @@ def fetch_current_weather(lat, lon):
     return out 
 
 @app.route("/weather", methods=["GET"])
-def weather_by_city(city):
+def welcome():
 
     return jsonify({
         "Site" : "Welcome to this API"
